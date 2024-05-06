@@ -569,8 +569,8 @@ void Elegoo_GFX_Button::initButton(Elegoo_GFX *gfx,
   _textcolor = textcolor;
   _textsize = textsize;
   _gfx = gfx;
-  strncpy(_label, label, 9);
-  _label[9] = 0;
+  strncpy(_label, label, 14);
+  _label[14] = 0;
 }
 
  
@@ -613,3 +613,9 @@ boolean Elegoo_GFX_Button::contains(int16_t x, int16_t y) {
  boolean Elegoo_GFX_Button::isPressed() { return currstate; }
  boolean Elegoo_GFX_Button::justPressed() { return (currstate && !laststate); }
  boolean Elegoo_GFX_Button::justReleased() { return (!currstate && laststate); }
+
+void Elegoo_GFX_Button::setCallback(void (*callback)(void)) {
+  _callback = callback;
+}
+
+
