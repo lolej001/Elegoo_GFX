@@ -614,8 +614,4 @@ boolean Elegoo_GFX_Button::contains(int16_t x, int16_t y) {
  boolean Elegoo_GFX_Button::justPressed() { return (currstate && !laststate); }
  boolean Elegoo_GFX_Button::justReleased() { return (!currstate && laststate); }
 
-void Elegoo_GFX_Button::setCallback(void (*callback)(void)) {
-  _callback = callback;
-}
-
 

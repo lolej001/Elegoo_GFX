@@ -101,7 +101,7 @@ class Elegoo_GFX_Button {
   Elegoo_GFX_Button(Elegoo_GFX *gfx, int16_t x, int16_t y, 
         uint8_t w, uint8_t h, 
         uint16_t outline, uint16_t fill, uint16_t textcolor,
-        char *label, uint8_t textsize, void (*callback)(void)):_callback(callback) {
+        char *label, uint8_t textsize, void (*callback)(void) = NULL) : _callback(callback) {
     initButton(gfx, x, y, w, h, outline, fill, textcolor, label, textsize);
     drawButton();
   } 
@@ -112,7 +112,7 @@ class Elegoo_GFX_Button {
 		      char *label, uint8_t textsize);
   void drawButton(boolean inverted = false);
   boolean contains(int16_t x, int16_t y);
-  void setCallback(void (*_callback)(void));
+
 
 
   void press(boolean p);
@@ -120,6 +120,8 @@ class Elegoo_GFX_Button {
   boolean justPressed();
   boolean justReleased();
 
+  void (*_callback)(void); 
+  
  private:
   Elegoo_GFX *_gfx;
   int16_t _x, _y;
@@ -127,7 +129,6 @@ class Elegoo_GFX_Button {
   uint8_t _textsize;
   uint16_t _outlinecolor, _fillcolor, _textcolor;
   char _label[14];
-  void (*_callback)(void); 
 
   boolean currstate, laststate;
 };
