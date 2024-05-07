@@ -569,8 +569,8 @@ void Elegoo_GFX_Button::initButton(Elegoo_GFX *gfx,
   _textcolor = textcolor;
   _textsize = textsize;
   _gfx = gfx;
-  strncpy(_label, label, 14);
-  _label[14] = 0;
+  strncpy(_label, label, 17);
+  _label[17] = 0;
 }
 
  
