@@ -615,3 +615,45 @@ boolean Elegoo_GFX_Button::contains(int16_t x, int16_t y) {
  boolean Elegoo_GFX_Button::justReleased() { return (!currstate && laststate); }
 
 
+ void SCDM_Checkbox::initCheckbox(Elegoo_GFX *gfx,
+            int16_t x, int16_t y, 
+            uint8_t w, uint8_t h, 
+            uint16_t outline)
+            {
+              _x = x;
+              _y = y;
+              _w = w;
+              _h = h;
+              _outlinecolor = outline;
+              _gfx = gfx;
+            }
+
+void SCDM_Checkbox::drawCheckbox(boolean checked) {
+    gfx.drawRect(_x, _y, _w, _h, WHITE);
+    if (checked) {
+        tft.fillRoundRect(x + 2, y + 2, CHECKBOX_SIZE - 4, CHECKBOX_SIZE - 4, 3, WHITE);
+    }
+    else {
+        tft.fillRoundRect(x + 2, y + 2, CHECKBOX_SIZE - 4, CHECKBOX_SIZE - 4, 3, BLACK);
+    }
+}
+
+boolean SCDM_Checkbox::contains(int16_t x, int16_t y) {
+    if ((x < _x) || (x > (_x + _w))) return false;
+    if ((y < _y) || (y > (_y + _h))) return false;
+    return true;
+}
+
+void SCDM_Checkbox::press(boolean p) {
+    laststate = currstate;
+    currstate = p;
+}
+
+boolean SCDM_Checkbox::isPressed() { return currstate; }
+
+boolean SCDM_Checkbox::justPressed() { return (currstate && !laststate); }
+
+boolean SCDM_Checkbox::justReleased() { return (!currstate && laststate); }
+
+
+

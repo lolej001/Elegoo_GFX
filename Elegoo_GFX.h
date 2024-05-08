@@ -133,4 +133,28 @@ class Elegoo_GFX_Button {
   boolean currstate, laststate;
 };
 
+class SCDM_Checkbox
+{
+  public:
+    SCDM_Checkbox(void);
+    SCDM_Checkbox(Elegoo_GFX *gfx, int16_t x, int16_t y, uint8_t w, uint8_t h, uint16_t outline, uint16_t fill, uint16_t textcolor, char *label, uint8_t textsize, void (*callback)(void) = NULL) : _callback(callback) {
+      initCheckbox(gfx, x, y, w, h, outline, fill, textcolor, label, textsize);
+      drawCheckbox();
+    }
+    void initCheckbox(Elegoo_GFX *gfx, int16_t x, int16_t y, uint8_t w, uint8_t h, uint16_t outline);
+    void drawCheckbox(boolean inverted = false);
+    boolean contains(int16_t x, int16_t y);
+    void press(boolean p);
+    boolean isPressed();
+    boolean justPressed();
+    boolean justReleased();
+    void (*_callback)(void);
+  private:
+    Elegoo_GFX *_gfx;
+    int16_t _x, _y;
+    uint16_t _w, _h;
+    uint16_t _outlinecolor;
+    boolean currstate, laststate;
+};
+
 #endif // _Elegoo_GFX_H
