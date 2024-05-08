@@ -629,12 +629,12 @@ boolean Elegoo_GFX_Button::contains(int16_t x, int16_t y) {
             }
 
 void SCDM_Checkbox::drawCheckbox(boolean checked) {
-    gfx.drawRect(_x, _y, _w, _h, WHITE);
+    gfx.drawRect(_x, _y, _w, _h, _outlinecolor);
     if (checked) {
-        tft.fillRoundRect(x + 2, y + 2, CHECKBOX_SIZE - 4, CHECKBOX_SIZE - 4, 3, WHITE);
+        gfx.fillRoundRect(x + 2, y + 2, _w - 4, _h - 4, 3, WHITE);
     }
     else {
-        tft.fillRoundRect(x + 2, y + 2, CHECKBOX_SIZE - 4, CHECKBOX_SIZE - 4, 3, BLACK);
+        gfx.fillRoundRect(x + 2, y + 2, _w - 4, _h - 4, 3, BLACK);
     }
 }
 
