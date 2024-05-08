@@ -617,8 +617,8 @@ boolean Elegoo_GFX_Button::contains(int16_t x, int16_t y) {
 
  void SCDM_Checkbox::initCheckbox(Elegoo_GFX *gfx,
             int16_t x, int16_t y, 
-            uint8_t w, uint8_t h, 
-            uint16_t outline)
+            int8_t w, int8_t h, 
+            int16_t outline)
             {
               _x = x;
               _y = y;
@@ -629,12 +629,12 @@ boolean Elegoo_GFX_Button::contains(int16_t x, int16_t y) {
             }
 
 void SCDM_Checkbox::drawCheckbox(boolean checked) {
-    gfx.drawRect(_x, _y, _w, _h, _outlinecolor);
+    _gfx->drawRect(_x, _y, _w, _h, _outlinecolor);
     if (checked) {
-        gfx.fillRoundRect(x + 2, y + 2, _w - 4, _h - 4, 3, _outlinecolor);
+        _gfx->fillRoundRect(_x + 2, _y + 2, _w - 4, _h - 4, 3, _outlinecolor);
     }
     else {
-        gfx.fillRoundRect(x + 2, y + 2, _w - 4, _h - 4, 3, _outlinecolor);
+        _gfx->fillRoundRect(_x + 2, _y + 2, _w - 4, _h - 4, 3, _outlinecolor);
     }
 }
 
