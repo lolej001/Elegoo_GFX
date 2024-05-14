@@ -137,12 +137,11 @@ class SCDM_Checkbox
 {
   public:
     SCDM_Checkbox(){};
-    SCDM_Checkbox(Elegoo_GFX *gfx, int16_t x, int16_t y, int8_t w, int8_t h, int16_t outline, void (*callback)(void) = NULL) : _callback(callback) {
-      initCheckbox(gfx, x, y, w, h, outline);
-      drawCheckbox();
+    SCDM_Checkbox(Elegoo_GFX *gfx, int16_t x, int16_t y, int8_t w, int8_t h, int16_t outlinecolor, int16_t fillcolor, void (*callback)(void) = NULL) : _callback(callback) {
+      initCheckbox(gfx, x, y, w, h, outlinecolor, fillcolor);
     }
-    void initCheckbox(Elegoo_GFX *gfx, int16_t x, int16_t y, int8_t w, int8_t h, int16_t outline);
-    void drawCheckbox(boolean inverted = false);
+    void initCheckbox(Elegoo_GFX *gfx, int16_t x, int16_t y, int8_t w, int8_t h, int16_t outline, int16_t fillcolor);
+    void drawCheckbox(bool fillRect);
     boolean contains(int16_t x, int16_t y);
     void press(boolean p);
     boolean isPressed();
@@ -154,7 +153,9 @@ class SCDM_Checkbox
     int16_t _x, _y;
     int16_t _w, _h;
     int16_t _outlinecolor;
-    boolean currstate, laststate;
+    int16_t _fillcolor;
+    boolean currstate = false;
+    boolean laststate = false;
 };
 
 #endif // _Elegoo_GFX_H

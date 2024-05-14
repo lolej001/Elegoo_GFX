@@ -618,24 +618,28 @@ boolean Elegoo_GFX_Button::contains(int16_t x, int16_t y) {
  void SCDM_Checkbox::initCheckbox(Elegoo_GFX *gfx,
             int16_t x, int16_t y, 
             int8_t w, int8_t h, 
-            int16_t outline)
+            int16_t outline, int16_t fillcolor)
             {
               _x = x;
               _y = y;
               _w = w;
               _h = h;
               _outlinecolor = outline;
+              _fillcolor = fillcolor;
               _gfx = gfx;
             }
 
-void SCDM_Checkbox::drawCheckbox(boolean checked) {
+void SCDM_Checkbox::drawCheckbox(bool fillRect) {
+    Serial.println("Drawing checkbox");
+
     _gfx->drawRect(_x, _y, _w, _h, _outlinecolor);
-    if (checked) {
+      if(fillRect)
+      {
         _gfx->fillRoundRect(_x + 2, _y + 2, _w - 4, _h - 4, 3, _outlinecolor);
-    }
-    else {
-        _gfx->fillRoundRect(_x + 2, _y + 2, _w - 4, _h - 4, 3, _outlinecolor);
-    }
+      }
+      else {
+        _gfx->fillRoundRect(_x + 2, _y + 2, _w - 4, _h - 4, 3, _fillcolor);
+      }
 }
 
 boolean SCDM_Checkbox::contains(int16_t x, int16_t y) {
@@ -654,6 +658,5 @@ boolean SCDM_Checkbox::isPressed() { return currstate; }
 boolean SCDM_Checkbox::justPressed() { return (currstate && !laststate); }
 
 boolean SCDM_Checkbox::justReleased() { return (!currstate && laststate); }
-
 
 
